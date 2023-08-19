@@ -7,11 +7,19 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="app">
-      <input type="text" id="city-input" placeholder="Enter city name" />
-      <button id="search-button">Search</button>
-      <div id="weather-info"></div>
-    </div>
-    <script src="script.js"></script>
+    <div class="container">
+        <h1>Weather App</h1>
+        <div id="app">
+            <input type="text" id="city-input" placeholder="Enter city name" />
+            <button id="search-button">Search</button>
+        </div>
+        <div class="weather-info">
+            <h2 id="city"></h2>
+            <p id="temperature"></p>
+            <p id="description"></p>
+            <p id="error"></p>
+        </div>
+    </div>   
+    <script src="sript.js"></script>
   </body>
 </html>
