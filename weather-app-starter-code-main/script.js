@@ -20,3 +20,13 @@ async function fetchWeatherData(city) {
         displayErrorMessage('City not found');
     }
 }
+// Function to render weather data on the webpage
+function renderWeatherData(data) {
+    const cityElement = document.getElementById('city');
+    const temperatureElement = document.getElementById('temperature');
+    const descriptionElement = document.getElementById('description');
+
+    cityElement.textContent = data.name;
+    temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
+    descriptionElement.textContent = data.weather[0].description;
+}
