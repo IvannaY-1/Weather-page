@@ -20,6 +20,7 @@ async function fetchWeatherData(city) {
         displayErrorMessage('City not found');
     }
 }
+
 // Function to render weather data on the webpage
 function renderWeatherData(data) {
     const cityElement = document.getElementById('city');
@@ -30,6 +31,7 @@ function renderWeatherData(data) {
     temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
     descriptionElement.textContent = data.weather[0].description;
 }
+
 // Function to capture user input and display weather information
 function searchCity() {
     const inputElement = document.getElementById('city-input');
@@ -39,6 +41,7 @@ function searchCity() {
         fetchWeatherData(city);
     }
 }
+
 // Function to display error message
 function displayErrorMessage(message) {
     const errorElement = document.getElementById('error');
@@ -48,4 +51,3 @@ function displayErrorMessage(message) {
 // Attach event listener to the search button
 const searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', searchCity);
-
