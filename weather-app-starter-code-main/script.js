@@ -30,3 +30,12 @@ function renderWeatherData(data) {
     temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
     descriptionElement.textContent = data.weather[0].description;
 }
+// Function to capture user input and display weather information
+function searchCity() {
+    const inputElement = document.getElementById('city-input');
+    const city = inputElement.value.trim();
+
+    if (city !== '') {
+        fetchWeatherData(city);
+    }
+}
