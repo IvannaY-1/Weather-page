@@ -39,3 +39,8 @@ function searchCity() {
         fetchWeatherData(city);
     }
 }
+// Function to display error message
+function displayErrorMessage(message) {
+    const errorElement = document.getElementById('error');
+    errorElement.textContent = message;
+}
