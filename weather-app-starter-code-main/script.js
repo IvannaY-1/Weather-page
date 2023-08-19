@@ -1,65 +1,22 @@
-let isLoading = true;
-let allUsers = [];
+// Base URL for the OpenWeatherMap API
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
 
-async function loadUserData() {
-  try {
-    isLoading = true;
+// Function to fetch weather data for a specified city
+async function fetchWeatherData(city) {
+    try {
+        // Replace 'YOUR_API_KEY' with your actual API key
+        const apiKey = 'ce3c72244e4e5385e8e87581c9e8d7ff';
+        const url = `${baseURL}?q=${city}&appid=${apiKey}&units=metric`;
 
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        const response = await fetch(url);
 
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
+        if (!response.ok) {
+            throw new Error('City not found');
+        }
+
+        const data = await response.json();
+        renderWeatherData(data);
+    } catch (error) {
+        displayErrorMessage('City not found');
     }
-
-    const data = await response.json();
-    allUsers = data;
-
-    renderUsers(allUsers);
-
-    isLoading = false;
-  } catch (error) {
-    console.error('Error fetching user data:', error.message);
-  }
 }
-
-function renderUsers(users) {
-const container = document.getElementById("userDataDisplay");
-    const userCards = isLoading
-    ? "<p>Loading data...</p>"
-    : !users.length
-    ? "<p>No users found or no data available.</p>"
-    : users
-        .map((user) => {
-          const status = user.completed ? "✅ Completed" : "❌ Not Completed";
-          return `
-      <div class="user-card">
-        <h2>${user.name}</h2>
-        <p>Name: ${user.username}</p>
-        <p>Email: ${user.email}</p>
-        <p>Phone: ${user.phone}</p>
-        <p>Website: ${user.website}</p>
-        <h2>Address</h2>
-        <p>Street: ${user.street}</p>
-        <p>Suite: ${user.suite}</p>
-        <p>City: ${user.city}</p>
-        <p>Zip: ${user.zip}</p>
-        <h2>Company</h2>
-        <p>Name: ${user.company.name}</p>
-        <p>Catchphrase: ${user.Catchphrase}</p>
-        <p>BS: ${user.BS}</p>
-      </div>
-    `;
-        })
-        .join("");
-
-  container.innerHTML = userCards;
-}
-
-function filterUsers() {
-  const searchTerm = document.getElementById('searchField').value.toLowerCase();
-  const filteredUsers = allUsers.filter(user => user.name.toLowerCase().includes(searchTerm));
-  
-  renderUsers(filteredUsers);
-}
-
-loadUserData();
