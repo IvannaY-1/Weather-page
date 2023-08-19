@@ -44,3 +44,8 @@ function displayErrorMessage(message) {
     const errorElement = document.getElementById('error');
     errorElement.textContent = message;
 }
+
+// Attach event listener to the search button
+const searchButton = document.getElementById('search-button');
+searchButton.addEventListener('click', searchCity);
+
